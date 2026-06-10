@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Get Gone Junk Removal
 
-## Getting Started
+Marketing website for **Get Gone Junk Removal** — a junk removal business in Columbus, Ohio. Built for local SEO and phone-call conversions.
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · Phosphor Icons · Resend (lead email).
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm start          # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Before you go live — replace the placeholders
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All business data lives in **one file**: [`src/config/business.ts`](src/config/business.ts). Search for `PLACEHOLDER` and update:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [ ] **Phone** (`phone` + `phoneRaw`) — most important; drives every call/text button.
+- [ ] **Email** (`email`).
+- [ ] **Address / ZIP** (`address`) and **geo** coordinates — used by the LocalBusiness schema & Google.
+- [ ] **Hours** (`hoursLabel`, `openingHours`).
+- [ ] **Founding year**, legal name.
+- [ ] **Social URLs** (`social`) — add your Google Business Profile, Facebook, Instagram (used in schema `sameAs`).
+- [ ] Swap the real **review count / rating** in `src/components/schema.tsx` once you have Google reviews.
+- [ ] Replace placeholder **testimonials** in `src/config/testimonials.ts`.
+- [ ] Replace `public/logo.png` / add real **photos** (truck, team, before/after).
 
-## Learn More
+Other content you can edit freely:
 
-To learn more about Next.js, take a look at the following resources:
+- **Services** → `src/config/services.ts` (each `featured` service gets a `/services/[slug]` page).
+- **Service-area suburbs** → `src/config/locations.ts` (each generates `/junk-removal/[slug]`).
+- **FAQs** → `src/config/faqs.ts` (rendered + emitted as FAQ schema).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Receiving leads (Resend)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The contact form posts to `src/app/api/lead/route.ts`. Without an API key it logs leads to the server console so the form still works. To receive real emails:
 
-## Deploy on Vercel
+1. Create a [Resend](https://resend.com) account and **verify the `getgonejunk.co` domain**.
+2. Copy `.env.example` → `.env.local` and set `RESEND_API_KEY`, `LEAD_TO_EMAIL`, `LEAD_FROM_EMAIL`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## SEO notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Per-page metadata, canonicals, Open Graph & Twitter cards.
+- JSON-LD: `LocalBusiness` (site-wide), `Service`, `FAQPage`, `BreadcrumbList`, `WebSite`.
+- `sitemap.xml` and `robots.txt` are generated and include every suburb + service page.
+- **The single biggest local-SEO lever lives outside this repo:** set up and verify a **Google Business Profile** for Get Gone Junk Removal, keep the name/address/phone identical to `business.ts`, and gather reviews.
