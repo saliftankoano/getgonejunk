@@ -102,7 +102,7 @@ export default async function ServicePage({
                 ))}
               </ul>
               <p className="mt-6 text-sm text-white/60">
-                Not sure if we take your item? Text us a photo at{" "}
+                Not sure if we take your item? Share a few photos at{" "}
                 <a href={`tel:${business.phoneRaw}`} className="font-semibold text-brand-300 underline">
                   {business.phone}
                 </a>{" "}

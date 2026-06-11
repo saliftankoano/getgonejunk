@@ -81,17 +81,21 @@ export function CallButton({
 export function TextUsButton({
   className = "",
   size = "lg",
+  href = "#quote-form",
+  label = "Get photo quote",
 }: {
   className?: string;
   size?: keyof typeof sizes;
+  href?: string;
+  label?: string;
 }) {
   return (
     <a
-      href={`sms:${business.phoneRaw}`}
-      className={`${base} ${sizes[size]} border-2 border-white/25 bg-white/5 text-white hover:border-brand-400 hover:bg-white/10 hover:-translate-y-0.5 ${className}`}
+      href={href}
+      className={`${base} ${sizes[size]} whitespace-nowrap border-2 border-ink-700/20 bg-white text-ink-900 shadow-card hover:border-brand-400 hover:bg-fog hover:-translate-y-0.5 ${className}`}
     >
-      <Icon name="chat" weight="fill" className="size-5 text-brand-400" />
-      Text us a photo
+      <Icon name="chat" weight="fill" className="size-5 text-brand-500" />
+      {label}
     </a>
   );
 }

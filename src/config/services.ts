@@ -61,7 +61,7 @@ export const services: Service[] = [
         },
         {
           heading: "How pricing works",
-          body: "No tedious quote forms. We price by how much space your junk fills in our truck, and we tell you the all-in price before we lift anything — labor, hauling, and disposal included. Text us a photo and we'll ballpark it on the spot.",
+          body: "No tedious quote forms. We price by how much space your junk fills in our truck, and we tell you the all-in price before we lift anything — labor, hauling, and disposal included. Share a few photos and we'll provide a quick ballpark estimate.",
         },
       ],
     },

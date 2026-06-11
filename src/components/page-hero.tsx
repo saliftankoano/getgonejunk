@@ -49,7 +49,6 @@ export function PageHero({
         )}
         {children}
       </div>
-      <div aria-hidden className="tape-stripes h-3 w-full opacity-90" />
     </section>
   );
 }

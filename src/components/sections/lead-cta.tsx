@@ -29,7 +29,7 @@ export function LeadCta({ source = "home" }: { source?: string }) {
           </h2>
           <p className="mt-4 max-w-md text-lg text-white/70">
             Drop your info and we&apos;ll text or call you right back with an upfront price. Or skip
-            the form entirely — call or text us a photo and we&apos;ll quote you on the spot.
+            the form entirely — share a few photos and we&apos;ll give you a spot-on quote.
           </p>
 
           <ul className="mt-7 grid gap-3">
@@ -49,16 +49,16 @@ export function LeadCta({ source = "home" }: { source?: string }) {
               <Icon name="phone" weight="fill" className="size-5" /> Call {business.phone}
             </a>
             <a
-              href={`sms:${business.phoneRaw}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/25 px-7 py-4 text-lg font-bold text-white hover:border-brand-400 hover:bg-white/10"
+              href="#quote-form"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-white/25 px-7 py-4 text-lg font-bold text-white hover:border-brand-400 hover:bg-white/10"
             >
-              <Icon name="chat" weight="fill" className="size-5 text-brand-400" /> Text a photo
+              <Icon name="chat" weight="fill" className="size-5 text-brand-400" /> Get photo quote
             </a>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="rounded-3xl border border-white/10 bg-white p-6 shadow-lift sm:p-8">
+          <div id="quote-form" className="scroll-mt-24 rounded-3xl border border-ink-700/10 bg-white p-6 shadow-card sm:p-8">
             <h3 className="font-display text-2xl text-ink-900">Request a pickup</h3>
             <p className="mt-1 text-sm text-ink-600">Takes 20 seconds. We&apos;ll handle the rest.</p>
             <div className="mt-5">

@@ -1,47 +1,81 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { business } from "@/config/business";
 import { Icon } from "@/components/icon";
-import { CircleNotch } from "@phosphor-icons/react/dist/ssr";
+import { CircleNotch, Images as ImagesIcon } from "@phosphor-icons/react/dist/ssr";
+import { submitLead } from "@/app/actions/submit-lead";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 /**
  * Deliberately short, low-friction lead form (no quote wizard).
- * Name + phone + email + one optional line. Posts to /api/lead.
+ * Name + phone + email + optional details/photos. Submits via server action.
  */
 export function LeadForm({ source = "site" }: { source?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [photoCount, setPhotoCount] = useState(0);
+  const [isPending, startTransition] = useTransition();
+
+  function isValidEmail(email: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function isValidPhone(phone: string) {
+    const digits = phone.replace(/\D/g, "");
+    return digits.length >= 10;
+  }
+
+  function validate(form: HTMLFormElement) {
+    const formData = new FormData(form);
+    const name = String(formData.get("name") || "").trim();
+    const phone = String(formData.get("phone") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const photos = formData
+      .getAll("photos")
+      .filter((entry): entry is File => entry instanceof File && entry.size > 0);
+
+    if (name.length < 2) return "Please enter your name.";
+    if (!isValidPhone(phone)) return "Please enter a valid phone number.";
+    if (!isValidEmail(email)) return "Please enter a valid email address.";
+    if (photos.length > 7) return "Please upload up to 7 photos.";
+    for (const photo of photos) {
+      if (!photo.type.startsWith("image/")) return "Please upload image files only.";
+      if (photo.size > 10 * 1024 * 1024) return "Each photo must be 10MB or smaller.";
+    }
+    return null;
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("submitting");
     setErrorMsg("");
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
 
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, source }),
-      });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || "Request failed");
-      }
-      setStatus("success");
-      form.reset();
-    } catch (err) {
+    const validationError = validate(form);
+    if (validationError) {
       setStatus("error");
-      setErrorMsg(
-        err instanceof Error && err.message
-          ? err.message
-          : "Something went wrong sending your request.",
-      );
+      setErrorMsg(validationError);
+      return;
     }
+
+    setStatus("submitting");
+
+    const formData = new FormData(form);
+    formData.set("source", source);
+
+    startTransition(async () => {
+      const result = await submitLead(formData);
+      if ("error" in result) {
+        setStatus("error");
+        setErrorMsg(result.error);
+        return;
+      }
+
+      setStatus("success");
+      setPhotoCount(0);
+      form.reset();
+    });
   }
 
   if (status === "success") {
@@ -106,6 +140,37 @@ export function LeadForm({ source = "site" }: { source?: string }) {
           className={inputCls}
         />
       </Field>
+      <div>
+        <span className="mb-1.5 block text-sm font-semibold text-ink-800">
+          Upload photos <span className="ml-1 font-normal text-ink-600">(optional)</span>
+        </span>
+        <label
+          htmlFor="lead-photos"
+          className="relative flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-ink-700/20 bg-fog px-4 py-3 transition hover:border-brand-400 hover:bg-brand-50"
+        >
+          <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-brand-100 text-brand-600">
+            <ImagesIcon className="size-5" weight="duotone" aria-hidden="true" />
+          </span>
+          <span className="min-w-0">
+            <span className="block text-sm font-semibold text-ink-800">
+              {photoCount > 0
+                ? `${photoCount} photo${photoCount === 1 ? "" : "s"} selected`
+                : "Add photos"}
+            </span>
+            <span className="block text-xs text-ink-600">Tap to upload · up to 7 images</span>
+          </span>
+          <input
+            id="lead-photos"
+            name="photos"
+            type="file"
+            accept="image/*"
+            multiple
+            className="absolute inset-0 cursor-pointer opacity-0"
+            onChange={(e) => setPhotoCount(e.currentTarget.files?.length ?? 0)}
+          />
+        </label>
+        <p className="mt-1 text-xs text-ink-600">Share a few photos for a more precise estimate.</p>
+      </div>
 
       {/* Honeypot — hidden from users, catches bots. */}
       <input
@@ -119,10 +184,10 @@ export function LeadForm({ source = "site" }: { source?: string }) {
 
       <button
         type="submit"
-        disabled={status === "submitting"}
+        disabled={status === "submitting" || isPending}
         className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-4 text-base font-bold text-ink-950 transition-all hover:bg-brand-bright hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {status === "submitting" ? (
+        {status === "submitting" || isPending ? (
           <>
             <CircleNotch className="size-5 animate-spin" weight="bold" />
             Sending…

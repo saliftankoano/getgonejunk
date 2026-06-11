@@ -2,7 +2,7 @@
 export const faqs: { q: string; a: string }[] = [
   {
     q: "How much does junk removal cost in Columbus?",
-    a: "Pricing is based on how much space your items take up in our truck. We give you an all-in price — labor, hauling, and disposal included — before we start, so there are no surprises. The fastest way to get a number is to call or text us a photo of your junk.",
+    a: "Pricing is based on how much space your items take up in our truck. We give you an all-in price — labor, hauling, and disposal included — before we start, so there are no surprises. The fastest way to get a number is to call or share a few photos of your junk.",
   },
   {
     q: "Do you offer same-day junk removal?",

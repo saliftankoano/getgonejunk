@@ -59,7 +59,7 @@ export default async function CityPage({
   const localFaqs = [
     {
       q: `How much does junk removal cost in ${loc.city}?`,
-      a: `In ${loc.city}, pricing is based on how much space your items take up in our truck — and we give you the all-in price (labor, hauling, and disposal) before we start. Call or text us a photo for a fast quote.`,
+      a: `In ${loc.city}, pricing is based on how much space your items take up in our truck — and we give you the all-in price (labor, hauling, and disposal) before we start. Call or share a few photos for a fast quote.`,
     },
     ...faqs.filter((f) => !f.q.toLowerCase().includes("cost")),
   ];

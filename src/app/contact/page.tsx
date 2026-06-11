@@ -7,7 +7,7 @@ import { Reveal } from "@/components/motion";
 import { Icon } from "@/components/icon";
 
 const title = "Contact Get Gone Junk Removal";
-const description = `Request a junk removal pickup in Columbus, OH. Call, text a photo, or send us your info and we'll get right back to you with an upfront price.`;
+const description = `Request a junk removal pickup in Columbus, OH. Call, share photos, or send us your info and we'll get right back to you with an upfront price.`;
 
 export const metadata: Metadata = {
   title,
@@ -34,7 +34,7 @@ export default function ContactPage() {
         highlight="gone."
         crumbs={crumbs}
         showCtas={false}
-        description="Call or text us a photo for the fastest quote, or drop your details below and we'll reach out right away."
+        description="Call or share a few photos for the fastest quote, or drop your details below and we'll reach out right away."
       />
 
       <section className="bg-white py-20 sm:py-24">
@@ -51,9 +51,9 @@ export default function ContactPage() {
               />
               <ContactCard
                 icon="chat"
-                label="Text a photo for a fast quote"
+                label="Get a photo quote"
                 value={business.phone}
-                href={`sms:${business.phoneRaw}`}
+                href="#quote-form"
               />
               <ContactCard
                 icon="check"
@@ -97,7 +97,7 @@ export default function ContactPage() {
 
           {/* Form */}
           <Reveal delay={0.05}>
-            <div className="rounded-3xl border border-ink-700/10 bg-white p-6 shadow-card sm:p-8">
+            <div id="quote-form" className="scroll-mt-24 rounded-3xl border border-ink-700/10 bg-white p-6 shadow-card sm:p-8">
               <h2 className="font-display text-3xl text-ink-900">Request a pickup</h2>
               <p className="mt-1 text-ink-600">
                 Short and simple — name, number, and what needs to go. No drawn-out quote forms.

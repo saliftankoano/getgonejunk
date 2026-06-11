@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { business } from "@/config/business";
 import { Icon } from "@/components/icon";
@@ -36,22 +35,19 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-200 ${
         scrolled
-          ? "bg-ink-950/95 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-ink-950/85"
-          : "bg-ink-950"
+          ? "border-b border-ink-700/10 bg-white/95 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-white/85"
+          : "border-b border-ink-700/10 bg-white"
       }`}
     >
       <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2.5" aria-label={`${business.name} home`}>
-          <Image
-            src="/logo.png"
-            alt=""
-            width={44}
-            height={44}
-            className="size-11 rounded-lg object-cover"
-            priority
-          />
-          <span className="font-display text-xl leading-none text-white sm:text-2xl">
-            Get <span className="text-brand-400">Gone</span>
+        <Link href="/" className="flex items-center" aria-label={`${business.name} home`}>
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-xl text-ink-900 sm:text-2xl">
+              GET <span className="text-brand-400">GONE</span>
+            </span>
+            <span className="mt-0.5 text-[0.6rem] font-extrabold tracking-[0.2em] text-ink-700 sm:text-[0.68rem]">
+              JUNK REMOVAL
+            </span>
           </span>
         </Link>
 
@@ -60,7 +56,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-semibold text-white/80 transition-colors hover:text-brand-400"
+              className="text-sm font-semibold text-ink-700 transition-colors hover:text-brand-600"
             >
               {item.label}
             </Link>
@@ -78,7 +74,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="grid size-11 place-items-center rounded-lg text-white lg:hidden"
+            className="grid size-11 place-items-center rounded-lg text-ink-900 lg:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
           >
@@ -89,7 +85,7 @@ export function Header() {
 
       {/* Mobile drawer */}
       <div
-        className={`overflow-hidden border-t border-white/10 bg-ink-900 lg:hidden ${
+        className={`overflow-hidden border-t border-ink-700/10 bg-fog lg:hidden ${
           open ? "max-h-[480px]" : "max-h-0"
         } transition-[max-height] duration-300 ease-in-out`}
       >
@@ -98,7 +94,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="border-b border-white/5 py-3 text-base font-semibold text-white/90"
+              className="border-b border-ink-700/10 py-3 text-base font-semibold text-ink-800"
             >
               {item.label}
             </Link>
@@ -111,10 +107,10 @@ export function Header() {
               <Icon name="phone" weight="fill" className="size-4" /> Call {business.phone}
             </a>
             <a
-              href={`sms:${business.phoneRaw}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/20 px-5 py-3 font-bold text-white"
+              href="/contact#quote-form"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-ink-700/20 px-5 py-3 font-bold text-ink-900 hover:border-brand-400"
             >
-              <Icon name="chat" weight="fill" className="size-4 text-brand-400" /> Text a photo
+              <Icon name="chat" weight="fill" className="size-4 text-brand-500" /> Get photo quote
             </a>
           </div>
         </nav>

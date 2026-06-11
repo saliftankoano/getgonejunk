@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { business, fullAddress } from "@/config/business";
 import { featuredServices } from "@/config/services";
 import { suburbs } from "@/config/locations";
@@ -10,13 +9,13 @@ export function Footer() {
   return (
     <footer className="bg-ink-950 text-white/70">
       {/* CTA strip */}
-      <div className="border-b border-white/10">
+      <div className="border-b border-ink-700/10 bg-brand-50 text-ink-900">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-5 px-4 py-10 sm:px-6 md:flex-row md:items-center">
           <div>
-            <h2 className="font-display text-3xl text-white sm:text-4xl">
-              Ready to <span className="text-brand-400">get gone?</span>
+            <h2 className="font-display text-3xl text-ink-900 sm:text-4xl">
+              Ready to <span className="text-brand-500">get gone?</span>
             </h2>
-            <p className="mt-1 text-white/60">
+            <p className="mt-1 text-ink-600">
               Same-day &amp; next-day pickups across {business.address.city} and Central Ohio.
             </p>
           </div>
@@ -31,10 +30,14 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Link href="/" className="flex items-center gap-2.5">
-            <Image src="/logo.png" alt={business.name} width={44} height={44} className="size-11 rounded-lg object-cover" />
-            <span className="font-display text-2xl text-white">
-              Get <span className="text-brand-400">Gone</span>
+          <Link href="/" className="flex items-center">
+            <span className="flex flex-col leading-none">
+              <span className="font-display text-2xl text-white">
+                GET <span className="text-brand-400">GONE</span>
+              </span>
+              <span className="mt-0.5 text-[0.68rem] font-extrabold tracking-[0.2em] text-white/80">
+                JUNK REMOVAL
+              </span>
             </span>
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed">{business.tagline}</p>
