@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Anton, Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { business } from "@/config/business";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -69,7 +69,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default function SiteLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (

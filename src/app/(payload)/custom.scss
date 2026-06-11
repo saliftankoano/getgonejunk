@@ -1,0 +1,20 @@
+:root {
+  --theme-success-50: #f3fbe6;
+  --theme-success-100: #e3f6c4;
+  --theme-success-250: #cdee92;
+  --theme-success-400: #97d22f;
+  --theme-success-500: #7db918;
+  --theme-success-600: #639310;
+  --theme-success-800: #3e5814;
+
+  --theme-bg: #f5f6f3;
+  --theme-input-bg: #ffffff;
+  --theme-border-color: #d8dbd3;
+  --theme-text: #161b13;
+}
+
+[data-theme="dark"] {
+  --theme-success-400: #97d22f;
+  --theme-success-500: #7db918;
+  --theme-success-600: #639310;
+}

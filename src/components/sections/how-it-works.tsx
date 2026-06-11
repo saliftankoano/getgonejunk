@@ -36,7 +36,7 @@ export function HowItWorks() {
           {steps.map((step, i) => (
             <Reveal key={step.title} delay={i * 0.08} className="h-full">
               <div className="relative flex h-full min-h-[280px] flex-col rounded-3xl border border-white/10 bg-white/[0.03] p-7">
-                <span className="absolute -top-5 right-6 font-display text-7xl text-white/5">
+                <span className="absolute right-5 top-4 font-display text-7xl text-white/5">
                   0{i + 1}
                 </span>
                 <div className="grid size-14 place-items-center rounded-2xl bg-brand-500 text-ink-950">

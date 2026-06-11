@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "payload": "payload",
+    "payload:generate-importmap": "payload generate:importmap"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.85.1",

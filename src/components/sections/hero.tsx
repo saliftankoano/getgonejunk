@@ -56,7 +56,7 @@ export function Hero() {
 
         {/* Visual */}
         <div className="hero-rise hero-rise-3 relative mx-auto w-full max-w-md lg:max-w-none">
-          <div className="animate-float relative">
+          <div className="relative">
             <div
               aria-hidden
               className="absolute inset-6 rounded-[2rem] bg-brand-500/25 blur-2xl"
@@ -73,11 +73,11 @@ export function Hero() {
           </div>
 
           {/* Floating proof badges */}
-          <div className="absolute -left-2 top-6 hidden rounded-2xl border border-ink-700/10 bg-white px-4 py-3 shadow-card sm:block">
+          <div className="animate-float absolute -left-2 top-6 hidden rounded-2xl border border-ink-700/10 bg-white px-4 py-3 shadow-card sm:block">
             <p className="font-display text-2xl text-brand-400">1,200+</p>
             <p className="text-xs text-ink-600">jobs hauled</p>
           </div>
-          <div className="absolute -right-2 bottom-8 hidden rounded-2xl border border-ink-700/10 bg-white px-4 py-3 shadow-card sm:block">
+          <div className="animate-float absolute -right-2 bottom-8 hidden rounded-2xl border border-ink-700/10 bg-white px-4 py-3 shadow-card sm:block">
             <p className="flex items-center gap-1 font-display text-2xl text-brand-400">
               <Icon name="leaf" weight="fill" className="size-5" /> 60%
             </p>

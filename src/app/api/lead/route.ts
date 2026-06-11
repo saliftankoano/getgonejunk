@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import sharp from "sharp";
+import { getPayload } from "payload";
+import payloadConfig from "@payload-config";
 import { business } from "@/config/business";
 
 export const runtime = "nodejs";
@@ -97,6 +99,20 @@ export async function POST(request: Request) {
       `Source:  ${source}`,
       `Photos:  ${attachments.length}`,
     ].join("\n");
+
+    const payload = await getPayload({ config: payloadConfig });
+    await payload.create({
+      collection: "leads",
+      data: {
+        name,
+        phone,
+        email,
+        details,
+        source,
+        photoCount: attachments.length,
+        status: "new",
+      },
+    });
 
     const recipients = [
       process.env.LEAD_EMAIL_ERROL,
