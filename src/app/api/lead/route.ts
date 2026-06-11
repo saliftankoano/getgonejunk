@@ -100,19 +100,23 @@ export async function POST(request: Request) {
       `Photos:  ${attachments.length}`,
     ].join("\n");
 
-    const payload = await getPayload({ config: payloadConfig });
-    await payload.create({
-      collection: "leads",
-      data: {
-        name,
-        phone,
-        email,
-        details,
-        source,
-        photoCount: attachments.length,
-        status: "new",
-      },
-    });
+    try {
+      const payload = await getPayload({ config: payloadConfig });
+      await payload.create({
+        collection: "leads",
+        data: {
+          name,
+          phone,
+          email,
+          details,
+          source,
+          photoCount: attachments.length,
+          status: "new",
+        },
+      });
+    } catch (error) {
+      console.error("[lead] payload save error:", error);
+    }
 
     const recipients = [
       process.env.LEAD_EMAIL_ERROL,
@@ -128,8 +132,16 @@ export async function POST(request: Request) {
     const apiKey = process.env.RESEND_API_KEY;
 
     if (!apiKey) {
-      console.info("[lead] (no RESEND_API_KEY — logged only)\n" + text);
-      return NextResponse.json({ ok: true, delivered: false });
+      console.error("[lead] missing RESEND_API_KEY");
+      if (process.env.NODE_ENV === "development") {
+        console.info("[lead] (no RESEND_API_KEY — logged only)\n" + text);
+        return NextResponse.json({ ok: true, delivered: false });
+      }
+
+      return NextResponse.json(
+        { error: "We couldn't send your request right now." },
+        { status: 500 },
+      );
     }
 
     const resend = new Resend(apiKey);

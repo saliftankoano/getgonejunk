@@ -1,20 +1,215 @@
 :root {
-  --theme-success-50: #f3fbe6;
-  --theme-success-100: #e3f6c4;
-  --theme-success-250: #cdee92;
-  --theme-success-400: #97d22f;
-  --theme-success-500: #7db918;
-  --theme-success-600: #639310;
-  --theme-success-800: #3e5814;
+  color-scheme: light;
 
-  --theme-bg: #f5f6f3;
-  --theme-input-bg: #ffffff;
-  --theme-border-color: #d8dbd3;
-  --theme-text: #161b13;
+  --gg-admin-ink-950: #10140f;
+  --gg-admin-ink-900: #161b13;
+  --gg-admin-ink-800: #232a21;
+  --gg-admin-ink-700: #313a2e;
+  --gg-admin-ink-600: #475142;
+  --gg-admin-fog: #f5f6f3;
+  --gg-admin-fog-2: #eceee8;
+  --gg-admin-white: #ffffff;
+  --gg-admin-brand-50: #f3fbe6;
+  --gg-admin-brand-100: #e3f6c4;
+  --gg-admin-brand-300: #b2e258;
+  --gg-admin-brand-400: #97d22f;
+  --gg-admin-brand-500: #7db918;
+  --gg-admin-brand-600: #639310;
+  --gg-admin-brand-800: #3e5814;
+  --gg-admin-danger: #b42318;
+  --gg-admin-danger-bg: #fff1f0;
+  --gg-admin-border: #d8dbd3;
+  --gg-admin-shadow: 0 16px 45px rgba(16, 20, 15, 0.08);
+
+  --theme-bg: var(--gg-admin-fog);
+  --theme-input-bg: var(--gg-admin-white);
+  --theme-border-color: var(--gg-admin-border);
+  --theme-text: var(--gg-admin-ink-900);
+  --theme-baseline: 24px;
+
+  --theme-elevation-0: var(--gg-admin-white);
+  --theme-elevation-50: var(--gg-admin-fog);
+  --theme-elevation-100: var(--gg-admin-fog-2);
+  --theme-elevation-150: #e5e8e1;
+  --theme-elevation-200: #d8dbd3;
+  --theme-elevation-250: #c9cdc1;
+  --theme-elevation-300: #b6bdad;
+  --theme-elevation-400: #8a947f;
+  --theme-elevation-500: #67725f;
+  --theme-elevation-600: var(--gg-admin-ink-600);
+  --theme-elevation-700: var(--gg-admin-ink-700);
+  --theme-elevation-800: var(--gg-admin-ink-800);
+  --theme-elevation-900: var(--gg-admin-ink-900);
+  --theme-elevation-950: var(--gg-admin-ink-950);
+  --theme-elevation-1000: #080a07;
+
+  --theme-success-50: var(--gg-admin-brand-50);
+  --theme-success-100: var(--gg-admin-brand-100);
+  --theme-success-250: #cdee92;
+  --theme-success-400: var(--gg-admin-brand-400);
+  --theme-success-500: var(--gg-admin-brand-500);
+  --theme-success-600: var(--gg-admin-brand-600);
+  --theme-success-800: var(--gg-admin-brand-800);
+
+  --theme-error-50: var(--gg-admin-danger-bg);
+  --theme-error-500: var(--gg-admin-danger);
+  --theme-error-600: #912018;
 }
 
 [data-theme="dark"] {
-  --theme-success-400: #97d22f;
-  --theme-success-500: #7db918;
-  --theme-success-600: #639310;
+  color-scheme: light;
+
+  --theme-bg: var(--gg-admin-fog);
+  --theme-input-bg: var(--gg-admin-white);
+  --theme-border-color: var(--gg-admin-border);
+  --theme-text: var(--gg-admin-ink-900);
+  --theme-elevation-0: var(--gg-admin-white);
+  --theme-elevation-50: var(--gg-admin-fog);
+  --theme-elevation-100: var(--gg-admin-fog-2);
+  --theme-elevation-150: #e5e8e1;
+  --theme-elevation-200: #d8dbd3;
+  --theme-elevation-250: #c9cdc1;
+  --theme-elevation-300: #b6bdad;
+  --theme-elevation-400: #8a947f;
+  --theme-elevation-500: #67725f;
+  --theme-elevation-600: var(--gg-admin-ink-600);
+  --theme-elevation-700: var(--gg-admin-ink-700);
+  --theme-elevation-800: var(--gg-admin-ink-800);
+  --theme-elevation-900: var(--gg-admin-ink-900);
+  --theme-elevation-950: var(--gg-admin-ink-950);
+  --theme-elevation-1000: #080a07;
+  --theme-success-400: var(--gg-admin-brand-400);
+  --theme-success-500: var(--gg-admin-brand-500);
+  --theme-success-600: var(--gg-admin-brand-600);
+}
+
+body {
+  background: var(--gg-admin-fog);
+  color: var(--gg-admin-ink-900);
+}
+
+a {
+  color: var(--gg-admin-brand-600);
+}
+
+label,
+legend,
+.field-label,
+.field-description,
+.render-fields,
+.collection-edit,
+.document-fields {
+  color: var(--gg-admin-ink-900);
+}
+
+input,
+textarea,
+select,
+.rs__control {
+  background-color: var(--gg-admin-white) !important;
+  border-color: var(--gg-admin-border) !important;
+  color: var(--gg-admin-ink-900) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(71, 81, 66, 0.62) !important;
+  opacity: 1;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.rs__control--is-focused {
+  border-color: var(--gg-admin-brand-500) !important;
+  box-shadow: 0 0 0 3px rgba(125, 185, 24, 0.22) !important;
+  outline: none;
+}
+
+button,
+.btn {
+  border-radius: 0.5rem;
+}
+
+.btn--style-primary,
+button[type="submit"] {
+  background: var(--gg-admin-brand-500) !important;
+  border-color: var(--gg-admin-brand-500) !important;
+  color: var(--gg-admin-ink-950) !important;
+}
+
+.btn--style-secondary {
+  background: var(--gg-admin-white) !important;
+  border-color: var(--gg-admin-border) !important;
+  color: var(--gg-admin-ink-900) !important;
+}
+
+.btn--style-primary:hover,
+button[type="submit"]:hover {
+  background: var(--gg-admin-brand-400) !important;
+  border-color: var(--gg-admin-brand-400) !important;
+}
+
+.card,
+.collection-list,
+.doc-controls,
+.document-fields,
+.drawer__content,
+.form-submit,
+.list-controls,
+.pill,
+.template-default__wrap {
+  background-color: var(--gg-admin-white);
+  color: var(--gg-admin-ink-900);
+}
+
+.card,
+.collection-list,
+.document-fields {
+  border-color: var(--gg-admin-border);
+  box-shadow: var(--gg-admin-shadow);
+}
+
+.collapsible--style-default,
+.array-field__row,
+.group-field,
+.tabs-field {
+  background: var(--gg-admin-white);
+  border-color: var(--gg-admin-border);
+  color: var(--gg-admin-ink-900);
+}
+
+/* Payload can place auth/email controls inside dark panels. Force contrast there. */
+[style*="background"] label,
+[style*="background"] legend,
+[style*="background"] .field-label,
+[class*="dark"] label,
+[class*="dark"] legend,
+[class*="dark"] .field-label {
+  color: var(--gg-admin-white) !important;
+}
+
+[style*="background"] input,
+[style*="background"] textarea,
+[style*="background"] select,
+[class*="dark"] input,
+[class*="dark"] textarea,
+[class*="dark"] select {
+  background: var(--gg-admin-white) !important;
+  color: var(--gg-admin-ink-900) !important;
+  border-color: rgba(255, 255, 255, 0.38) !important;
+}
+
+[style*="background"] button,
+[style*="background"] .btn,
+[class*="dark"] button,
+[class*="dark"] .btn {
+  background: var(--gg-admin-brand-500) !important;
+  border-color: var(--gg-admin-brand-500) !important;
+  color: var(--gg-admin-ink-950) !important;
+}
+
+.login__form,
+.create-first-user {
+  color: var(--gg-admin-ink-900);
 }

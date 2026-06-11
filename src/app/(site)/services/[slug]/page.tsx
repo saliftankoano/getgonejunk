@@ -139,7 +139,7 @@ export default async function ServicePage({
                       <Link
                         key={s.slug}
                         href={`/services/${s.slug}`}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-5 py-2.5 font-semibold transition-colors hover:border-brand-400 hover:text-brand-300"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-brand-500 px-5 py-2.5 font-bold text-ink-950 transition-all hover:bg-brand-bright hover:-translate-y-0.5"
                       >
                         {s.name}
                         <Icon name="caret" weight="bold" className="size-4" />

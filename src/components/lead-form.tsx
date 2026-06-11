@@ -65,16 +65,22 @@ export function LeadForm({ source = "site" }: { source?: string }) {
     formData.set("source", source);
 
     startTransition(async () => {
-      const result = await submitLead(formData);
-      if ("error" in result) {
-        setStatus("error");
-        setErrorMsg(result.error);
-        return;
-      }
+      try {
+        const result = await submitLead(formData);
+        if ("error" in result) {
+          setStatus("error");
+          setErrorMsg(result.error);
+          return;
+        }
 
-      setStatus("success");
-      setPhotoCount(0);
-      form.reset();
+        setStatus("success");
+        setPhotoCount(0);
+        form.reset();
+      } catch (error) {
+        console.error("[lead-form] submission error:", error);
+        setStatus("error");
+        setErrorMsg("We couldn't send your request right now.");
+      }
     });
   }
 
