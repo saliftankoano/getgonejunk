@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/hero";
 import { StatsBar } from "@/components/sections/stats";
 import { ServicesSection } from "@/components/sections/services";
 import { HowItWorks } from "@/components/sections/how-it-works";
+import { RealResults } from "@/components/sections/real-results";
 import { Pillars } from "@/components/sections/pillars";
 import { ServiceArea } from "@/components/sections/service-area";
 import { Testimonials } from "@/components/sections/testimonials";
@@ -18,6 +19,7 @@ export default function Home() {
       <StatsBar />
       <ServicesSection />
       <HowItWorks />
+      <RealResults />
       <Pillars />
       <ServiceArea />
       <Testimonials />

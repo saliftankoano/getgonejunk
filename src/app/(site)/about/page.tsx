@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { business } from "@/config/business";
 import { PageHero } from "@/components/page-hero";
 import { Pillars } from "@/components/sections/pillars";
@@ -91,7 +92,19 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal delay={0.05}>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-4">
+              <figure className="overflow-hidden rounded-3xl border border-ink-700/10 bg-fog shadow-card">
+                <Image
+                  src="/about-handshake.png"
+                  alt="Get Gone Junk Removal crew member shaking hands with a homeowner"
+                  width={1365}
+                  height={1024}
+                  sizes="(max-width: 1024px) 95vw, 560px"
+                  className="h-auto w-full object-cover"
+                />
+              </figure>
+
+              <div className="grid gap-4 sm:grid-cols-2">
               {values.map((v) => (
                 <div
                   key={v.title}
@@ -104,6 +117,7 @@ export default function AboutPage() {
                   <p className="mt-2 text-sm text-ink-600">{v.body}</p>
                 </div>
               ))}
+              </div>
             </div>
           </Reveal>
         </div>
